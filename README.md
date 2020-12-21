@@ -23,5 +23,6 @@ optional arguments:
   -o OUTPUT_FILE, --output-file OUTPUT_FILE
                         write JSON to file
 ```
+
 ## License
 This project is licensed under the [MIT License](LICENSE).
