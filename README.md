@@ -1,7 +1,13 @@
 # techbench-json-dump
 Dump Techbench metadata to a JSON file.
-## Usage
+
 ```commandline
+git clone https://github.com/luzeagithub/techbench-json-dump.git
+cd techbench-json-dump
+pip3 install -r requirements.txt
+```
+## Usage
+```
 usage: main.py [-h] [-o OUTPUT_FILE] start stop
 
 Dump Techbench metadata to a JSON file.
