@@ -1,6 +1,7 @@
 # techbench-json-dump
 Dump Techbench metadata to a JSON file.
 
+## Installation
 ```commandline
 git clone https://github.com/luzeagithub/techbench-json-dump.git
 cd techbench-json-dump
