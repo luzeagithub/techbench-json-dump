@@ -7,6 +7,7 @@ git clone https://github.com/luzeagithub/techbench-json-dump.git
 cd techbench-json-dump
 pip3 install -r requirements.txt
 ```
+
 ## Usage
 ```
 usage: main.py [-h] [-o OUTPUT_FILE] start stop
