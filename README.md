@@ -22,7 +22,6 @@ optional arguments:
   -h, --help            show this help message and exit
   -o OUTPUT_FILE, --output-file OUTPUT_FILE
                         write JSON to file
-
 ```
 ## License
 This project is licensed under the [MIT License](LICENSE).
