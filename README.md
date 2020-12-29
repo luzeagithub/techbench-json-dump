@@ -1,8 +1,10 @@
 # techbench-json-dump
 Dump Techbench metadata to a JSON file.
 
+Download already generated JSON files [here](https://discord.com/channels/739210784978239550/782596291926294529).
+
 ## Installation
-```commandline
+```
 git clone https://github.com/luzeagithub/techbench-json-dump.git
 cd techbench-json-dump
 pip3 install -r requirements.txt
