@@ -26,5 +26,8 @@ optional arguments:
                         write JSON to file
 ```
 
+## Contributing
+Yes, please. Fork this repository and start working. After you are done with it, submit a pull request and I will review your changes.
+
 ## License
 This project is licensed under the [MIT License](LICENSE).
