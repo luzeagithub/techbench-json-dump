@@ -26,7 +26,6 @@ async def get_techbench_json(start: int, stop: int):
                             i = soup.find('i')
                             if i.get_text() != 'The product key is eligible for ':
                                 temp_dict.update({'product_name': i.get_text().replace('The product key is eligible for ', '')})
-                                temp_dict.update({'insider_preview': 'Insider Preview' in i.get_text()})
                                 temp_product_languages_dict = {}
                                 for option in soup.find_all('option'):
                                     if option['value'] != '':
