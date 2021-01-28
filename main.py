@@ -45,7 +45,7 @@ if __name__ == '__main__':
                         for option in soup.find_all('option'):
                             if option['value'] != '':
                                 temp_languages.update({json.loads(option['value'])['id']: json.loads(option['value'])['language']})
-                        temp.update({product_id: {'name': i.get_text().replace('The product key is eligible for ', ''), 'languages': temp_languages}})
+                        temp.update({product_id: {'name': i.get_text().replace('The product key is eligible for ', ''), 'languages': dict(sorted(temp_languages.items(), key=lambda language_name: language_name[1]))}})
         loop.close()
         reference = {}
         if os.path.isfile(args.output_file) and os.stat(args.output_file).st_size != 0:
