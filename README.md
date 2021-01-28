@@ -12,18 +12,17 @@ pip3 install -r requirements.txt
 
 ## Usage
 ```
-usage: main.py [-h] [-o OUTPUT_FILE] start stop
+usage: main.py [-h] start stop output-file
 
 Dump Techbench metadata to a JSON file.
 
 positional arguments:
-  start                 product edition ID to start with
-  stop                  product edition ID to stop with
+  start        product edition ID to start with
+  stop         product edition ID to stop with
+  output-file  write JSON to file (merge if already exists)
 
 optional arguments:
-  -h, --help            show this help message and exit
-  -o OUTPUT_FILE, --output-file OUTPUT_FILE
-                        write JSON to file
+  -h, --help   show this help message and exit
 ```
 
 ## Contributing
