@@ -1,5 +1,5 @@
 # techbench-json-dump
-Dump Techbench metadata to a JSON file.
+Dump Tech Bench metadata to a JSON file.
 
 Download already generated JSON files [here](https://discord.com/channels/739210784978239550/782596291926294529).
 
@@ -14,7 +14,7 @@ pip3 install -r requirements.txt
 ```
 usage: main.py [-h] start stop output-file
 
-Dump Techbench metadata to a JSON file.
+Dump Tech Bench metadata to a JSON file.
 
 positional arguments:
   start        product edition ID to start with

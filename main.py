@@ -26,7 +26,7 @@ async def get_responses(start: int, stop: int):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Dump Techbench metadata to a JSON file.')
+    parser = argparse.ArgumentParser(description='Dump Tech Bench metadata to a JSON file.')
     parser.add_argument('start', type=int, help='product edition ID to start with')
     parser.add_argument('stop', type=int, help='product edition ID to stop with')
     parser.add_argument('output_file', type=str, help='write JSON to file (merge if already exists)', metavar='output-file')
