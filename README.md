@@ -1,7 +1,7 @@
 # techbench-json-dump
 Dump Tech Bench metadata to a JSON file.
 
-Download already generated JSON files [here](https://discord.com/channels/739210784978239550/782596291926294529).
+The latest generated dump can be found [here](https://techbench.luzea.ovh/dump.json).
 
 ## Installation
 ```
