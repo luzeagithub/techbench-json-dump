@@ -12,17 +12,18 @@ pip3 install -r requirements.txt
 
 ## Usage
 ```
-usage: main.py [-h] start stop output-file
+usage: main.py [-h] [--threads THREADS] start stop output-file
 
 Dump Tech Bench metadata to a JSON file.
 
 positional arguments:
-  start        product edition ID to start with
-  stop         product edition ID to stop with
-  output-file  write JSON to file (merge if already exists)
+  start              product edition ID to start with
+  stop               product edition ID to stop with
+  output-file        write JSON to file (merge if already exists)
 
 optional arguments:
-  -h, --help   show this help message and exit
+  -h, --help         show this help message and exit
+  --threads THREADS  number of threads used (default: 64)
 ```
 
 ## Contributing
