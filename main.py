@@ -142,7 +142,8 @@ if __name__ == '__main__':
         merged = merge(reference, json.loads(json.dumps(temp)))
         out = {}
         for key in sorted(merged.keys(), key=int):
-            out.update({key: {'name': merged[key]['name'], 'languages': dict(sorted(merged[key]['languages'].items(), key=lambda language_name: language_name[1]))}})
+            if merged[key]['name'] not in out:
+                out.update({key: {'name': merged[key]['name'], 'languages': dict(sorted(merged[key]['languages'].items(), key=lambda language_name: language_name[1]))}})
         if args.json_indent == 0:
             args.json_indent = None
         with open(args.output_file, 'w', encoding='utf-8') as f:
