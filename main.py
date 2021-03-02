@@ -2,14 +2,15 @@
 # -*- coding: utf-8 -*-
 
 import argparse
-from bs4 import BeautifulSoup
-from concurrent.futures.thread import ThreadPoolExecutor
 import json
-from jsonmerge import merge
 import os
-from progress.bar import ShadyBar
 import requests
 import uuid
+
+from bs4 import BeautifulSoup
+from concurrent.futures.thread import ThreadPoolExecutor
+from jsonmerge import merge
+from progress.bar import ShadyBar
 
 bar = None
 blocked_products = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 83, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 234, 235, 1879, 1880, 1881]
