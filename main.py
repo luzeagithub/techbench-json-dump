@@ -9,10 +9,8 @@ import uuid
 
 from bs4 import BeautifulSoup
 from concurrent.futures.thread import ThreadPoolExecutor
-from jsonmerge import merge
 from progress.bar import ShadyBar
 
-bar = None
 blocked_products = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 83, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 234, 235, 1879, 1880, 1881]
 responses = []
 
@@ -34,13 +32,17 @@ if __name__ == '__main__':
     parser.add_argument('--threads', default=64, type=int, help='number of threads used (default: 64)')
     args = parser.parse_args()
 
+    if args.json_indent == 0:
+        args.json_indent = None
+
     if not args.start > args.stop:
+        # make requests
         bar = ShadyBar('Processing', max=args.stop - args.start + 1)
         with ThreadPoolExecutor(max_workers=args.threads) as executor:
             for product_id in range(args.start + 1, args.stop):
                 executor.submit(make_request, product_id)
         bar.finish()
-        temp = {}
+        temp_output = {}
         for product_id, status, response_text in responses:
             if status == 200:
                 soup = BeautifulSoup(response_text, 'lxml')
@@ -135,18 +137,33 @@ if __name__ == '__main__':
                         for option in soup.find_all('option'):
                             if option['value'] != '':
                                 temp_languages.update({json.loads(option['value'])['id']: json.loads(option['value'])['language']})
-                        temp.update({product_id: {'name': product_name, 'languages': temp_languages}})
+                        temp_output.update({product_id: {'name': product_name, 'languages': temp_languages}})
+        temp_output = json.loads(json.dumps(temp_output))
+
+        # load reference
         reference = {}
         if os.path.isfile(args.output_file) and os.stat(args.output_file).st_size != 0:
             with open(args.output_file, 'r', encoding='utf-8') as f:
                 reference = json.load(f)
-        merged = merge(reference, json.loads(json.dumps(temp)))
-        out = {}
-        for key in sorted(merged.keys(), key=int):
-            if merged[key]['name'] not in out:
-                out.update({key: {'name': merged[key]['name'], 'languages': dict(sorted(merged[key]['languages'].items(), key=lambda language_name: language_name[1]))}})
-        if args.json_indent == 0:
-            args.json_indent = None
+
+        # merge
+        merged_output = {}
+        for key in reference:
+            merged_output.update({key: {'name': reference[key]['name'], 'languages': reference[key]['languages']}})
+        for key in temp_output:
+            merged_output.update({key: {'name': temp_output[key]['name'], 'languages': temp_output[key]['languages']}})
+
+        # sort
+        sorted_output = {}
+        for key in sorted(merged_output.keys(), key=int):
+            exists = False
+            for product in sorted_output:
+                if sorted_output[product]['name'] == merged_output[key]['name']:
+                    exists = True
+            if not exists:
+                sorted_output.update({key: {'name': merged_output[key]['name'], 'languages': dict(sorted(merged_output[key]['languages'].items(), key=lambda language_name: language_name[1]))}})
+
+        # write to file
         with open(args.output_file, 'w', encoding='utf-8') as f:
-            f.write(json.dumps(out, indent=args.json_indent))
+            f.write(json.dumps(sorted_output, indent=args.json_indent))
         print(f'JSON data written to {args.output_file}')
