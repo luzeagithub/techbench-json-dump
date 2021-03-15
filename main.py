@@ -164,6 +164,8 @@ if __name__ == '__main__':
                 sorted_output.update({key: {'name': merged_output[key]['name'], 'languages': dict(sorted(merged_output[key]['languages'].items(), key=lambda language_name: language_name[1]))}})
 
         # write to file
+        if len(str(reference).encode('utf-8')) > len(str(sorted_output).encode('utf-8')):
+            sorted_output = dict(sorted(reference, key=int))
         with open(args.output_file, 'w', encoding='utf-8') as f:
             f.write(json.dumps(sorted_output, indent=args.json_indent))
         print(f'JSON data written to {args.output_file}')
