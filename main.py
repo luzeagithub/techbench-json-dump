@@ -148,11 +148,10 @@ if __name__ == '__main__':
 
         # merge
         merged_output = {}
+        for key in reference:
+            merged_output.update({key: {'name': reference[key]['name'], 'languages': reference[key]['languages']}})
         for key in temp_output:
             merged_output.update({key: {'name': temp_output[key]['name'], 'languages': temp_output[key]['languages']}})
-        for key in reference:
-            if key not in merged_output.keys():
-                merged_output.update({key: {'name': reference[key]['name'], 'languages': reference[key]['languages']}})
 
         # sort
         sorted_output = {}
